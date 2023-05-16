@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+//import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 import "../App.css";
 import login_img from '../images/login_img.svg';
 import email_icon from '../images/e-mail.svg';
 import password_icon from '../images/passeword.svg';
-import { Link } from 'react-router-dom';
 
 
 function Login() {
@@ -12,9 +14,27 @@ function Login() {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+ 
+   e.preventDefault();
+    const formData = {
+      username: username,
+     password: password,
+     rememberMe: rememberMe,
+    };
+    console.log(formData);
+
+
+  //  try {
+  //    const response = await axios.post('URL هنا', formData);
+  //    console.log(response.data);
+  //    
+  //  } catch (error) {
+  //    console.error(error);
+  //    
+   // }
   };
+
   return (
     <div className="login-card">
 
