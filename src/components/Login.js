@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import {useHistory } from 'react-router-dom';
 import "../App.css";
 import login_img from '../images/login_img.svg';
 import email_icon from '../images/e-mail.svg';
@@ -13,7 +13,7 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
-
+  const history =useHistory();
   const handleSubmit = async (e) => {
  
    e.preventDefault();
@@ -25,14 +25,17 @@ function Login() {
     console.log(formData);
 
 
-  //  try {
-  //    const response = await axios.post('URL هنا', formData);
-  //    console.log(response.data);
-  //    
-  //  } catch (error) {
-  //    console.error(error);
-  //    
-   // }
+  try {
+    const response = await axios.post('/api/login', formData);
+    console.log(response.data);
+    setLoggedIn(true);
+    setRole(response.data.role);
+    history.push('/dashbord')
+    
+  } catch (error) {
+   console.error(error);
+    
+   }
   };
 
   return (
